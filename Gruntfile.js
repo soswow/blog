@@ -3,7 +3,7 @@ var cons = require('consolidate');
 var moment = require('moment');
 var gruntTasksConfig = require('./grunt/grunt-tasks-config');
 
-cons.requires.nunjucks = nunjucks.configure('layouts', {dev: true});
+cons.requires.nunjucks = nunjucks.configure('layouts', {dev: false});
 
 cons.requires.nunjucks.addFilter('date', function (date, format) {
     return moment(date).format(format);

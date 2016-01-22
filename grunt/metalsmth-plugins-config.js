@@ -14,7 +14,6 @@ module.exports = {
             path: 'page/:num/index.html'
         }
     },
-    markdown: true,
     permalinks: {
         pattern: ':title'
     },
@@ -25,6 +24,5 @@ module.exports = {
     },
     'in-place': {
         engine: 'nunjucks'
-    },
-    assets: true
+    }
 };

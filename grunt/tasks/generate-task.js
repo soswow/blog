@@ -2,15 +2,16 @@
 var Metalsmith = require('metalsmith');
 var pluginsConfig = require('../metalsmth-plugins-config');
 
-Metalsmith.prototype.loadPlugins = function (pluginsConfig) {
-    for (var pluginName in pluginsConfig) {
+Metalsmith.prototype.loadPlugins = function (pluginsConfig, pluginsToLoad) {
+    pluginsToLoad.forEach(pluginName => {
+        console.log('metalsmith-' + pluginName + ' loaded');
         var plugin = require('metalsmith-' + pluginName);
         if (pluginsConfig[pluginName] === true) {
             this.use(plugin());
         } else {
             this.use(plugin(pluginsConfig[pluginName]));
         }
-    }
+    });
     return this;
 };
 
@@ -22,22 +23,33 @@ module.exports = function(grunt) {
             root: '.',
             dist: 'build/blog'
         });
+        process.env.DEBUG = 'metalsmith:metadata metalsmith:files';
 
         Metalsmith(options.root)
             .destination('build/blog')
             .metadata({
                 site: {
+                    github: 'https://github.com/soswow/blog',
+                    time: new Date(),
                     title: 'Blog #42',
                     baseurl: '/blog',
+                    description: 'I am still not sure if this gonna fly or what I end up putting here',
                     tagline: 'Notes to future me'
                 }
             })
-            .loadPlugins(pluginsConfig)
-            //.use(function (files, metalsmith, cb) {
-            //    console.log(Object.keys(files));
-            //    console.log(files['page/2/index.html'].pagination);
-            //    cb()
-            //})
+            .loadPlugins(pluginsConfig, [
+                //'debug',
+                'collections',
+                //'debug',
+                'pagination',
+                //'debug',
+                'markdown',
+                'permalinks',
+                'layouts',
+                'debug',
+                'in-place',
+                'assets'
+            ])
             .build(function (err) {
                 if (err) {
                     console.log(err.stack);

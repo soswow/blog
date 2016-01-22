@@ -1,6 +1,8 @@
 {% extends "default.html" %}
 
+{% block content %}
 <div class="page">
-  <h1 class="page-title">{{ page.title }}</h1>
-  {{ contents|safe }}
+    <h1 class="page-title">{{ page.title }}</h1>
+    {{ contents|safe }}
 </div>
+{% endblock %}
