@@ -5,5 +5,10 @@
     <h1 class="post-title">{{ title }}</h1>
     <span class="post-date">{{ date|date('DD.MM.YYYY') }}</span>
     {{ contents|safe }}
+
+    Tags:
+    {% for tag in tags %}
+        <a href="{{site.baseurl}}/tags#tag-{{tag}}">{{tag}}</a>
+    {% endfor %}
 </div>
 {% endblock %}

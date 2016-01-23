@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{% block content %}
+
+<div class="page">
+    <h1 class="page-title">{{ title }}</h1>
+    {% for tagName, pages in tags %}
+        <span id="tag-{{tagName}}">{{tagName}}</span>:
+        {% for page in pages %}
+        <a href="{{ page.path }}">{{page.title}}</a>
+        {% endfor %}
+        <br/>
+    {% endfor %}
+    <!--<span class="post-date">{{ date|date('DD.MM.YYYY') }}</span>-->
+    <!--{{ contents|safe }}-->
+</div>
+{% endblock %}

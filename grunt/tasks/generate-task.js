@@ -1,18 +1,42 @@
 'use strict';
 var Metalsmith = require('metalsmith');
 var pluginsConfig = require('../metalsmth-plugins-config');
+var _ = require('lodash');
 
 Metalsmith.prototype.loadPlugins = function (pluginsConfig, pluginsToLoad) {
     pluginsToLoad.forEach(pluginName => {
-        console.log('metalsmith-' + pluginName + ' loaded');
-        var plugin = require('metalsmith-' + pluginName);
-        if (pluginsConfig[pluginName] === true) {
-            this.use(plugin());
-        } else {
-            this.use(plugin(pluginsConfig[pluginName]));
+        if(_.isFunction(pluginName)){
+            console.log('custom ' + pluginName.name + ' loaded');
+            this.use(pluginName);
+        }else {
+            console.log('metalsmith-' + pluginName + ' loaded');
+            var plugin = require('metalsmith-' + pluginName);
+            if (pluginsConfig[pluginName] === true) {
+                this.use(plugin());
+            } else {
+                this.use(plugin(pluginsConfig[pluginName]));
+            }
         }
     });
     return this;
+};
+
+var tagsPlugin = function tagsPlugin (files, metalsmith, done) {
+    var tags = {};
+    _.each(files, function (file) {
+        if (!file.tags) {
+            return
+        }
+        file.tags = file.tags.split(' ');
+        file.tags.forEach(function (tag) {
+            if (!tags[tag]) {
+                tags[tag] = [];
+            }
+            tags[tag].push(file);
+        });
+    });
+    metalsmith.metadata().tags = tags;
+    done();
 };
 
 module.exports = function(grunt) {
@@ -38,15 +62,13 @@ module.exports = function(grunt) {
                 }
             })
             .loadPlugins(pluginsConfig, [
-                //'debug',
                 'collections',
-                //'debug',
                 'pagination',
-                //'debug',
+                tagsPlugin,
+                'debug',
                 'markdown',
                 'permalinks',
                 'layouts',
-                'debug',
                 'in-place',
                 'assets'
             ])
