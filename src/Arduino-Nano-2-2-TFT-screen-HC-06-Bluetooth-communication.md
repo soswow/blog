@@ -4,6 +4,7 @@ date: 2015-11-19
 layout: post.html
 collection: posts
 tags: arduino bluetooth
+draft: true
 ---
 
 Why

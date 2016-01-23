@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "lodash": "^4.0.0",
-    "metalsmith-debug": "0.0.2"
+    "metalsmith-debug": "0.0.2",
+    "metalsmith-drafts": "0.0.1"
   }
 }

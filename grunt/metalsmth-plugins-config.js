@@ -7,7 +7,7 @@ module.exports = {
     },
     pagination: {
         'collections.posts': {
-            perPage: 2,
+            perPage: 10,
             noPageOne: true,
             first: 'index.html',
             layout: 'index.html',

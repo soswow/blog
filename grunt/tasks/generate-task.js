@@ -62,6 +62,7 @@ module.exports = function(grunt) {
                 }
             })
             .loadPlugins(pluginsConfig, [
+                'drafts',
                 'collections',
                 'pagination',
                 tagsPlugin,
