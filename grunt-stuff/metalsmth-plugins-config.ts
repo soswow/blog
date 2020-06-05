@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     collections: {
         posts: {
             sortBy: 'date',

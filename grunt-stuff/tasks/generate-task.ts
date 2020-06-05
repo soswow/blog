@@ -1,10 +1,10 @@
-'use strict';
-var Metalsmith = require('metalsmith');
-var pluginsConfig = require('../metalsmth-plugins-config');
-var _ = require('lodash');
+import globalGrunt from 'grunt';
+import Metalsmith from 'metalsmith';
+import pluginsConfig from '../metalsmth-plugins-config';
+import _ from 'lodash';
 
-Metalsmith.prototype.loadPlugins = function (pluginsConfig, pluginsToLoad) {
-    pluginsToLoad.forEach(pluginName => {
+Metalsmith.prototype.loadPlugins = function (pluginsConfig: any, pluginsToLoad: any) {
+    pluginsToLoad.forEach((pluginName: any) => {
         if(_.isFunction(pluginName)){
             console.log('custom ' + pluginName.name + ' loaded');
             this.use(pluginName);
@@ -21,14 +21,14 @@ Metalsmith.prototype.loadPlugins = function (pluginsConfig, pluginsToLoad) {
     return this;
 };
 
-var tagsPlugin = function tagsPlugin (files, metalsmith, done) {
-    var tags = {};
+var tagsPlugin = function tagsPlugin (files: any, metalsmith: any, done: any) {
+    var tags: any = {};
     _.each(files, function (file) {
         if (!file.tags) {
             return
         }
         file.tags = file.tags.split(' ');
-        file.tags.forEach(function (tag) {
+        file.tags.forEach(function (tag: any) {
             if (!tags[tag]) {
                 tags[tag] = [];
             }
@@ -39,7 +39,7 @@ var tagsPlugin = function tagsPlugin (files, metalsmith, done) {
     done();
 };
 
-module.exports = function(grunt) {
+module.exports = function(grunt: typeof globalGrunt) {
 
     grunt.registerTask('generate', function () {
         var done = this.async();
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         });
         process.env.DEBUG = 'metalsmith:metadata metalsmith:files';
 
-        Metalsmith(options.root)
+        (Metalsmith as any)(options.root)
             .destination('build/blog')
             .metadata({
                 site: {
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
                 'in-place',
                 'assets'
             ])
-            .build(function (err) {
+            .build(function (err: Error | null) {
                 if (err) {
                     console.log(err.stack);
                     throw err;
