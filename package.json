@@ -5,26 +5,26 @@
   "main": "index.js",
   "author": "Aleksandr Motsjonov <soswow@gmail.com>",
   "devDependencies": {
-    "consolidate": "^0.13.1",
-    "grunt": "^0.4.5",
-    "grunt-contrib-connect": "^0.11.2",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-gh-pages": "^1.0.0",
-    "metalsmith": "^1.7.0",
-    "metalsmith-assets": "^0.1.0",
-    "metalsmith-collections": "^0.7.0",
-    "metalsmith-in-place": "^1.3.2",
-    "metalsmith-layouts": "^1.4.2",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-pagination": "^1.2.0",
-    "metalsmith-permalinks": "^0.4.0",
-    "metalsmith-watch": "^1.0.1",
-    "moment": "^2.10.6",
-    "nunjucks": "^2.1.0"
+    "consolidate": "0.x",
+    "grunt": "1.x",
+    "grunt-contrib-connect": "2.x",
+    "grunt-contrib-watch": "1.x",
+    "grunt-gh-pages": "4.x",
+    "metalsmith": "2.x",
+    "metalsmith-assets": "0.x",
+    "metalsmith-collections": "0.x",
+    "metalsmith-in-place": "4.x",
+    "metalsmith-layouts": "2.x",
+    "metalsmith-markdown": "1.x",
+    "metalsmith-pagination": "1.x",
+    "metalsmith-permalinks": "2.x",
+    "metalsmith-watch": "1.x",
+    "moment": "2.x",
+    "nunjucks": "3.x"
   },
   "dependencies": {
-    "lodash": "^4.0.0",
-    "metalsmith-debug": "0.0.2",
-    "metalsmith-drafts": "0.0.1"
+    "lodash": "4.x",
+    "metalsmith-debug": "1.x",
+    "metalsmith-drafts": "1.x"
   }
 }
