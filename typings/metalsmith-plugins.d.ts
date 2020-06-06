@@ -1,0 +1,9 @@
+declare module 'metalsmith-drafts';
+declare module 'metalsmith-collections';
+declare module 'metalsmith-pagination';
+declare module 'metalsmith-debug';
+declare module 'metalsmith-markdown';
+declare module 'metalsmith-permalinks';
+declare module 'metalsmith-layouts';
+declare module 'metalsmith-in-place';
+declare module 'metalsmith-assets';

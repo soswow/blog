@@ -1,25 +1,16 @@
+/// <reference types="../../typings/metalsmith-plugins" />
 import globalGrunt from 'grunt';
 import Metalsmith from 'metalsmith';
-import pluginsConfig from '../metalsmth-plugins-config';
 import _ from 'lodash';
-
-Metalsmith.prototype.loadPlugins = function (pluginsConfig: any, pluginsToLoad: any) {
-    pluginsToLoad.forEach((pluginName: any) => {
-        if(_.isFunction(pluginName)){
-            console.log('custom ' + pluginName.name + ' loaded');
-            this.use(pluginName);
-        }else {
-            console.log('metalsmith-' + pluginName + ' loaded');
-            var plugin = require('metalsmith-' + pluginName);
-            if (pluginsConfig[pluginName] === true) {
-                this.use(plugin());
-            } else {
-                this.use(plugin(pluginsConfig[pluginName]));
-            }
-        }
-    });
-    return this;
-};
+import drafts from 'metalsmith-drafts';
+import collections from 'metalsmith-collections';
+import pagination from 'metalsmith-pagination';
+import debug from 'metalsmith-debug';
+import markdown from 'metalsmith-markdown';
+import permalinks from 'metalsmith-permalinks';
+import layouts from 'metalsmith-layouts';
+import inPlace from 'metalsmith-in-place';
+import assets from 'metalsmith-assets';
 
 var tagsPlugin = function tagsPlugin (files: any, metalsmith: any, done: any) {
     var tags: any = {};
@@ -39,8 +30,9 @@ var tagsPlugin = function tagsPlugin (files: any, metalsmith: any, done: any) {
     done();
 };
 
-module.exports = function(grunt: typeof globalGrunt) {
-
+console.log('module is loaded');
+export default function(grunt: typeof globalGrunt) {
+    console.log('default func ran');
     grunt.registerTask('generate', function () {
         var done = this.async();
         var options = this.options({
@@ -49,7 +41,7 @@ module.exports = function(grunt: typeof globalGrunt) {
         });
         process.env.DEBUG = 'metalsmith:metadata metalsmith:files';
 
-        (Metalsmith as any)(options.root)
+        Metalsmith(options.root)
             .destination('build/blog')
             .metadata({
                 site: {
@@ -61,18 +53,42 @@ module.exports = function(grunt: typeof globalGrunt) {
                     tagline: 'Notes to future me'
                 }
             })
-            .loadPlugins(pluginsConfig, [
-                'drafts',
-                'collections',
-                'pagination',
-                tagsPlugin,
-                'debug',
-                'markdown',
-                'permalinks',
-                'layouts',
-                'in-place',
-                'assets'
-            ])
+              .use(drafts())
+              .use(collections({
+                  posts: {
+                      sortBy: 'date',
+                      reverse: true
+                  }
+              }))
+              .use(pagination({
+                  'collections.posts': {
+                      perPage: 10,
+                      noPageOne: true,
+                      first: 'index.njk',
+                      layout: 'index.njk',
+                      path: 'page/:num/index.html'
+                  }
+              }))
+              .use(tagsPlugin)
+              .use(debug())
+              .use(markdown())
+              .use(permalinks({
+                  pattern: ':title'
+              }))
+              .use(layouts({
+                  default: 'post.njk',
+                  engine: 'nunjucks',
+                  engineOptions: {
+                    customOption: true,
+                    filters: {
+                      date: 'nunjucks-date-filter'
+                    }
+                  }
+              }))
+              .use(inPlace({
+                  engine: 'nunjucks'
+              }))
+              .use(assets())
             .build(function (err: Error | null) {
                 if (err) {
                     console.log(err.stack);

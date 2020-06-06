@@ -3,6 +3,7 @@ import nunjucks from 'nunjucks';
 import cons from 'consolidate';
 import moment from 'moment';
 import gruntTasksConfig from './grunt-stuff/grunt-tasks-config';
+import registerGenerateTask from './grunt-stuff/tasks/generate-task';
 
 cons.requires.nunjucks = nunjucks.configure('layouts');
 
@@ -14,7 +15,7 @@ module.exports = function(grunt: typeof globalGrunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-gh-pages');
-    grunt.loadTasks('./build/tasks');
+    registerGenerateTask(grunt);
 
     grunt.initConfig(gruntTasksConfig);
 
