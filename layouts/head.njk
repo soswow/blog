@@ -16,7 +16,7 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/css/poole.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/github-gist.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/css/lanyon.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
@@ -26,4 +26,11 @@
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+{#    <link rel="stylesheet"#}
+{#          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">#}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/twig.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
