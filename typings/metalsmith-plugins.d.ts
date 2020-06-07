@@ -7,3 +7,4 @@ declare module 'metalsmith-permalinks';
 declare module 'metalsmith-layouts';
 declare module 'metalsmith-in-place';
 declare module 'metalsmith-assets';
+declare module 'metalsmith-rename';

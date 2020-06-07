@@ -1,7 +1,7 @@
 ---
 title: Arduino Nano + 2.2'' TFT screen + HC-06 Bluetooth communication
 date: 2015-11-19
-layout: post.html
+layout: post.njk
 collection: posts
 tags: arduino bluetooth
 draft: true

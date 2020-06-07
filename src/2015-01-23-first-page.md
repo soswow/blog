@@ -1,7 +1,7 @@
 ---
 title: About what this blog is made of
 date: 2016-01-23
-layout: post.html
+layout: post.njk
 collection: posts
 tags: blog
 ---

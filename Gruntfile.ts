@@ -1,15 +1,6 @@
 import globalGrunt from 'grunt';
-import nunjucks from 'nunjucks';
-import cons from 'consolidate';
-import moment from 'moment';
 import gruntTasksConfig from './grunt-stuff/grunt-tasks-config';
 import registerGenerateTask from './grunt-stuff/tasks/generate-task';
-
-cons.requires.nunjucks = nunjucks.configure('layouts');
-
-cons.requires.nunjucks.addFilter('date', function (date: Date, format: string) {
-    return moment(date).format(format);
-});
 
 module.exports = function(grunt: typeof globalGrunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');

@@ -11,6 +11,7 @@ import permalinks from 'metalsmith-permalinks';
 import layouts from 'metalsmith-layouts';
 import inPlace from 'metalsmith-in-place';
 import assets from 'metalsmith-assets';
+import rename from 'metalsmith-rename';
 
 var tagsPlugin = function tagsPlugin (files: any, metalsmith: any, done: any) {
     var tags: any = {};
@@ -39,10 +40,10 @@ export default function(grunt: typeof globalGrunt) {
             root: '.',
             dist: 'build/blog'
         });
-        process.env.DEBUG = 'metalsmith:metadata metalsmith:files';
+        process.env.DEBUG = 'metalsmith:metadata metalsmith:files metalsmith-layouts';
 
         Metalsmith(options.root)
-            .destination('build/blog')
+            .destination(options.dist)
             .metadata({
                 site: {
                     github: 'https://github.com/soswow/blog',
@@ -56,8 +57,12 @@ export default function(grunt: typeof globalGrunt) {
               .use(drafts())
               .use(collections({
                   posts: {
-                      sortBy: 'date',
-                      reverse: true
+                    sortBy: 'date',
+                    reverse: true
+                  },
+                  pages: {
+                    sortBy: 'date',
+                    reverse: true
                   }
               }))
               .use(pagination({
@@ -66,20 +71,22 @@ export default function(grunt: typeof globalGrunt) {
                       noPageOne: true,
                       first: 'index.njk',
                       layout: 'index.njk',
-                      path: 'page/:num/index.html'
+                      path: 'page/:num/index.njk'
                   }
               }))
               .use(tagsPlugin)
               .use(debug())
               .use(markdown())
               .use(permalinks({
-                  pattern: ':title'
+                pattern: ':title'
               }))
+              .use(rename([
+                [/\.html$/, ".njk"]
+              ]))
               .use(layouts({
                   default: 'post.njk',
                   engine: 'nunjucks',
                   engineOptions: {
-                    customOption: true,
                     filters: {
                       date: 'nunjucks-date-filter'
                     }
@@ -88,6 +95,10 @@ export default function(grunt: typeof globalGrunt) {
               .use(inPlace({
                   engine: 'nunjucks'
               }))
+              .use(rename([
+                [/\.njk$/, ".html"]
+              ]))
+
               .use(assets())
             .build(function (err: Error | null) {
                 if (err) {

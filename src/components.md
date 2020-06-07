@@ -1,6 +1,6 @@
 ---
 title: Components
-layout: page.html
+layout: page.njk
 collection: pages
 ---
 
