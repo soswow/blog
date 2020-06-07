@@ -76,6 +76,15 @@ export default function(grunt: typeof globalGrunt) {
               }))
               .use(tagsPlugin)
               .use(debug())
+              .use(rename([
+                [/\.md$/, ".md.njk"]
+              ]))
+              .use(inPlace({
+                  engine: 'nunjucks'
+              }))
+              .use(rename([
+                [/\.md\.njk$/, ".md"]
+              ]))
               .use(markdown())
               .use(permalinks({
                 pattern: ':title'
@@ -92,13 +101,9 @@ export default function(grunt: typeof globalGrunt) {
                     }
                   }
               }))
-              .use(inPlace({
-                  engine: 'nunjucks'
-              }))
               .use(rename([
                 [/\.njk$/, ".html"]
               ]))
-
               .use(assets())
             .build(function (err: Error | null) {
                 if (err) {
