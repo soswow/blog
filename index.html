@@ -11,7 +11,7 @@
 
   <title>
     
-      Blog #42 &middot; Notes to future me
+       &middot; Blog #42
     
   </title>
 
@@ -27,6 +27,13 @@
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/twig.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 
@@ -40,7 +47,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="/blog/">Home</a>
+    <a class="sidebar-nav-item" href="/blog/">Home</a>
 
     
       <a class="sidebar-nav-item" href="/blog/components">Components</a>
@@ -53,7 +60,7 @@
 
   <div class="sidebar-item">
     <p>
-      &copy; 2016. All rights reserved.
+      &copy; 2020. All rights reserved.
     </p>
   </div>
 </div>
@@ -81,61 +88,46 @@
               </a>
           </h1>
 
-          <span class="post-date">23.01.2016 | </span>
-          <a href="/blog/about-what-this-blog-is-made-of#disqus_thread">
-              <span class="disqus-comment-count" data-disqus-identifier="http://soswow.github.io/blog/about-what-this-blog-is-made-of"></span>
-          </a>
+          <span class="post-date">23.01.2016</span>
 
         <h2 id="stack">Stack</h2>
-<p>This website is statically generated with <a href="http://www.metalsmith.io/">Metalsmith</a> framework, which is written in JavaScript. 
- This is important, since I don&#39;t know much Ruby and know much JS.
-It works with very simple idea:</p>
+<p>This website is statically generated with <a href="https://metalsmith.io/">Metalsmith</a> framework, which is written in JavaScript. This is imposrtant, since I don&#39;t know much Ruby and know much JS. It works with very simple idea:</p>
 <blockquote>
-<p>All of the logic in Metalsmith is handled by plugins. You simply chain them together. </p>
+<p>All of the logic in Metalsmith is handled by plugins. You simply chain them together.</p>
 </blockquote>
-<p>So, in a sense it reminds how <a href="http://gulpjs.com/">Gulp</a> works. Each plugin is just a transformer for stream of files (usually your blog content and pages) and metadata store. 
-A plugin can modify anything in this stream. For more details consult with Metalsmith website.</p>
-<p>It is my second choice. At first I tried <a href="https://hexo.io/">Hexo</a>. It was nice, but something went wrong. 
-I&#39;ve made a mistake not writing down what was the reason of rejecting it and now I can&#39;t recall.</p>
-<p>As for design/theme I was planning to use some of the many open source themes out there. Since most popular engine is 
- <a href="https://jekyllrb.com/">Jekyll</a> it also has most of the themes. This was the driving force in choosing templating engine.
- Current chosen theme is <a href="http://lanyon.getpoole.com/">lanyon</a>.</p>
-<p>For templating I use <a href="http://mozilla.github.io/nunjucks/">Nunjucks</a> template engine from Mozilla in conjuction with <a href="https://github.com/tj/consolidate.js/">Consolidate</a>.
- Even thought <a href="https://github.com/leizongmin/tinyliquid">TinyLiquid</a> engine suppose to be JS reincarnation of <a href="http://liquidmarkup.org/">liquid</a> (which is in the heart of Jekyll, 
- for some reason it didn&#39;t worked well with Jekyll templates.</p>
+<p>So, in a sense it reminds how <a href="http://gulpjs.com/">Gulp</a> works. Each plugin is just a transformer for stream of files (usually your blog content and pages) and metadata store. A plugin can modify anything in this stream. For more details consult with Metalsmith website.</p>
+<p>It is my second choice. At first I tried <a href="https://hexo.io/">Hexo</a>. It was nice, but something went wrong. I&#39;ve made a mistake not writing down what was the reason of rejecting it and now I can&#39;t recall.</p>
+<p>As for design/theme I was planning to use some of the many open source themes out there. Since most popular engine is <a href="https://jekyllrb.com/">Jekyll</a> it also has most of the themes. This was the driving force in choosing templating engine. Current chosen theme is <a href="http://lanyon.getpoole.com/">lanyon</a>.</p>
+<p>For templating I use <a href="http://mozilla.github.io/nunjucks/">Nunjucks</a> template engine from Mozilla in conjuction with <a href="https://github.com/tj/consolidate.js/">Consolidate</a>. Even thought <a href="https://github.com/leizongmin/tinyliquid">TinyLiquid</a> engine suppose to be JS reincarnation of <a href="http://liquidmarkup.org/">liquid</a> (which is in the heart of Jekyll, for some reason it didn&#39;t worked well with Jekyll templates.</p>
 <p>The current list of blog features is the following:</p>
 <ul>
 <li>Blog posts</li>
-<li>Pages with a link in the sidebar on the left </li>
+<li>Pages with a link in the sidebar on the left</li>
 <li>Simplest pagination with back and forth links</li>
 <li>Simple Tags system</li>
 </ul>
 <p>Things I still need to add:</p>
 <ul>
-<li>Ability to comment on posts and pages </li>
+<li>Ability to comment on posts and pages</li>
 </ul>
 <h2 id="tags-solution">Tags solution</h2>
-<p>After rejecting seemingly overcomplicated (and not maintained) 
-<a href="https://github.com/totocaster/metalsmith-tags">plugin</a>, 
-I&#39;ve end up writing my own solution. It consists of three parts. 
-First you want to specify tags on each blog post or a page.</p>
-<pre><code class="lang-yaml"><span class="hljs-attr">title:</span> First page in this blog/site/whatever
-<span class="hljs-attr">layout:</span> post.html
-<span class="hljs-attr">collection:</span> posts
-<span class="hljs-attr">tags:</span> blog howto
-</code></pre>
-<p>Second we need to parse all the pages and posts (files) and do two things: </p>
+<p>After rejecting seemingly overcomplicated (and not maintained) <a href="https://github.com/totocaster/metalsmith-tags">plugin</a>, I&#39;ve end up writing my own solution. It consists of three parts. First you want to specify tags on each blog post or a page.</p>
+<pre><code>title: First page in this blog/site/whatever
+layout: post.html
+collection: posts
+tags: blog howto
+</code></pre><p>Second we need to parse all the pages and posts (files) and do two things:</p>
 <ul>
 <li>convert <code>tags</code> to an array, so when we need this on the page we can iterate it</li>
 <li>save <code>&lt;tag name&gt;: [&lt;page&gt;, &lt;page&gt;]</code> mapping into the metadata store</li>
 </ul>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">files, metalsmith, done</span>) </span>{
-    <span class="hljs-keyword">var</span> tags = {};
-    _.each(files, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">file</span>) </span>{
-        <span class="hljs-keyword">if</span> (!file.tags) { <span class="hljs-keyword">return</span> }
-        file.tags = file.tags.split(<span class="hljs-string">' '</span>);
-        file.tags.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">tag</span>) </span>{
-            <span class="hljs-keyword">if</span> (!tags[tag]) {
+<pre><code class="language-js">function (files, metalsmith, done) {
+    var tags = {};
+    _.each(files, function (file) {
+        if (!file.tags) { return }
+        file.tags = file.tags.split(&#39; &#39;);
+        file.tags.forEach(function (tag) {
+            if (!tags[tag]) {
                 tags[tag] = [];
             }
             tags[tag].push(file);
@@ -147,28 +139,27 @@ First you want to specify tags on each blog post or a page.</p>
 </code></pre>
 <p>And a Third we need to make use of these two things we&#39;ve added to the data stream:</p>
 <ul>
-<li>display list of tags on the page itself</li>
-</ul>
+<li><p>display list of tags on the page itself
+</p>
+<pre><code class="language-twig">Tags:
+{% for tag in tags %}
+    &lt;a href=&quot;{{site.baseurl}}/tags#tag-{{tag}}&quot;&gt;{{tag}}&lt;/a&gt;
+{% endfor %}</code></pre>
 <p></p>
-<pre><code class="lang-twig"><span class="xml">    Tags:
-    </span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-keyword">for</span></span> tag in tags %}</span><span class="xml">
-        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{{site.baseurl}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">/tags#tag-</span></span></span><span class="hljs-template-variable">{{tag}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">{{tag}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    </span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-keyword">endfor</span></span> %}</span><span class="xml"></span>
-</code></pre>
+</li>
+<li><p>make a separate page for tags with own layout:
+</p>
+<pre><code class="language-twig">&lt;div class=&quot;page&quot;&gt;
+  &lt;h1 class=&quot;page-title&quot;&gt;{{ title }}&lt;/h1&gt;
+  {% for tagName, pages in tags %}
+      &lt;span id=&quot;tag-{{tagName}}&quot;&gt;{{tagName}}&lt;/span&gt;:
+      {% for page in pages %}
+          &lt;a href=&quot;{{ page.path }}&quot;&gt;{{page.title}}&lt;/a&gt;
+      {% endfor %}
+      &lt;br/&gt;
+  {% endfor %}
+&lt;/div&gt;</code></pre>
 <p></p>
-<ul>
-<li>make a separate page for tags with own layout:
-<pre><code class="lang-twig"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page-title"</span>&gt;</span></span><span class="hljs-template-variable">{{ title }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-  </span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-keyword">for</span></span> tagName, pages in tags %}</span><span class="xml">
-      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tag-</span></span></span><span class="hljs-template-variable">{{tagName}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">{{tagName}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>:
-      </span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-keyword">for</span></span> page in pages %}</span><span class="xml">
-          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{{ page.path }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span></span><span class="hljs-template-variable">{{page.title}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      </span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-keyword">endfor</span></span> %}</span><span class="xml">
-      <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
-  </span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-keyword">endfor</span></span> %}</span><span class="xml">
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-</code></pre>
 </li>
 </ul>
 
@@ -209,19 +200,16 @@ First you want to specify tags on each blog post or a page.</p>
         }, false);
       })(document);
     </script>
-
-    
+    <script src="//localhost:35729/livereload.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2354819-12"></script>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-      ga('create', 'UA-2354819-12', 'auto');
-      ga('send', 'pageview');
-
+      gtag('config', 'UA-2354819-12');
     </script>
-    
     <script id="dsq-count-scr" src="//sasha-github-blog.disqus.com/count.js" async></script>
   </body>
 </html>
