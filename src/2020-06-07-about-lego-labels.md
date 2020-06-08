@@ -17,7 +17,7 @@ Also around that time (~5 years ago) one very generous gentlemen at [Robots And 
 
 The problem was all of them were filled with electronics components, that owner didn't need anyway. For 5 years they were not used, taking space moving from place to place with me because I didn't have time nor motivation to clean them up and use this storage for something else.
 
-Until now. I spent a couple of weeks packing each drawer content into own bag and moving drawer label to a ziplock bag.
+Until now. Over a couple of weeks I painstakingly moved all the electronics into bags (detaching and labels was the hardest part).
 [![De-labeled Craft Cabinet]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_2.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_2.jpg)
 The plan is to use one or two boxes for my own electronics components and other small things in the shop, and the rest of them use for storing lego.
 
