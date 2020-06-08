@@ -11,7 +11,7 @@
 
   <title>
     
-      Blog #42 &middot; Notes to future me
+      About preparing labels for lego collection &middot; Blog #42
     
   </title>
 
@@ -62,7 +62,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="/blog/">Home</a>
+    <a class="sidebar-nav-item" href="/blog/">Home</a>
 
     
       <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
@@ -94,18 +94,10 @@
 
       <div class="container content">
         
-<div class="posts">
-      
-      <div class="post">
-          <h1 class="post-title">
-              <a href="/blog/about-preparing-labels-for-lego-collection">
-                  About preparing labels for lego collection
-              </a>
-          </h1>
-
-          <span class="post-date">07.06.2020</span>
-
-        <h2 id="background">Background</h2>
+<div class="post">
+    <h1 class="post-title">About preparing labels for lego collection</h1>
+    <span class="post-date">07.06.2020 | <a href="#disqus_thread">Link</a></span>
+    <h2 id="background">Background</h2>
 <p>Over time we&#39;ve collected a reasonable collection of lego parts. An initial big boost was given by my oldest brother who gave us his grown up son&#39;s collection. When we moved to Australia we left it behind, prepared in a suitcase. A bit later an acquaintance agreed to take it with him on his way to Australia. Pro Tip: if you ask a 2x person to carry 23kg of lego in a second separate suitcase think what you will say on a border because 100% this will look suspicious. If only someone gave us this tip. The guy was not ready for some extra time on the border 🤣</p>
 <p>When we settled in Australia we bought <a href="https://www.ikea.com/au/en/cat/toy-storage-20474/">TROFAST</a> storage solution for toys. Because we had like 9-12 drawers we decided to separate all lego parts by color. Later I found out that this is classic next step for lego owners who reaches a particular size.</p>
 <p>Also around that time (~5 years ago) one very generous gentlemen at <a href="https://robodino.org/">Robots And Dinosaurs Sydney hacker space</a> gifted me 8 or 10 of these:
@@ -181,101 +173,35 @@ walkDir(&quot;./source&quot;, (localPath: string) =&gt; {
 <a href="/blog/images/2020-06-07-about-lego-labels_9.jpg"><img src="/blog/images/small/2020-06-07-about-lego-labels_9.jpg" alt="Unused labels"></a>
 <a href="/blog/images/2020-06-07-about-lego-labels_10.jpg"><img src="/blog/images/small/2020-06-07-about-lego-labels_10.jpg" alt="Two boxes sorted"></a></p>
 
-      </div>
-      
-      <div class="post">
-          <h1 class="post-title">
-              <a href="/blog/about-what-this-blog-is-made-of">
-                  About what this blog is made of
-              </a>
-          </h1>
 
-          <span class="post-date">23.01.2016</span>
+    Tags:
+    
+        <a href="/blog/tags#tag-blog">blog</a>
+    
+        <a href="/blog/tags#tag-lego">lego</a>
+    
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+       * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
 
-        <h2 id="stack">Stack</h2>
-<p>This website is statically generated with <a href="https://metalsmith.io/">Metalsmith</a> framework, which is written in JavaScript. This is imposrtant, since I don&#39;t know much Ruby and know much JS. It works with very simple idea:</p>
-<blockquote>
-<p>All of the logic in Metalsmith is handled by plugins. You simply chain them together.</p>
-</blockquote>
-<p>So, in a sense it reminds how <a href="http://gulpjs.com/">Gulp</a> works. Each plugin is just a transformer for stream of files (usually your blog content and pages) and metadata store. A plugin can modify anything in this stream. For more details consult with Metalsmith website.</p>
-<p>It is my second choice. At first I tried <a href="https://hexo.io/">Hexo</a>. It was nice, but something went wrong. I&#39;ve made a mistake not writing down what was the reason of rejecting it and now I can&#39;t recall.</p>
-<p>As for design/theme I was planning to use some of the many open source themes out there. Since most popular engine is <a href="https://jekyllrb.com/">Jekyll</a> it also has most of the themes. This was the driving force in choosing templating engine. Current chosen theme is <a href="http://lanyon.getpoole.com/">lanyon</a>.</p>
-<p>For templating I use <a href="http://mozilla.github.io/nunjucks/">Nunjucks</a> template engine from Mozilla in conjuction with <a href="https://github.com/tj/consolidate.js/">Consolidate</a>. Even thought <a href="https://github.com/leizongmin/tinyliquid">TinyLiquid</a> engine suppose to be JS reincarnation of <a href="http://liquidmarkup.org/">liquid</a> (which is in the heart of Jekyll, for some reason it didn&#39;t worked well with Jekyll templates.</p>
-<p>The current list of blog features is the following:</p>
-<ul>
-<li>Blog posts</li>
-<li>Pages with a link in the sidebar on the left</li>
-<li>Simplest pagination with back and forth links</li>
-<li>Simple Tags system</li>
-</ul>
-<p>Things I still need to add:</p>
-<ul>
-<li>Ability to comment on posts and pages</li>
-</ul>
-<h2 id="tags-solution">Tags solution</h2>
-<p>After rejecting seemingly overcomplicated (and not maintained) <a href="https://github.com/totocaster/metalsmith-tags">plugin</a>, I&#39;ve end up writing my own solution. It consists of three parts. First you want to specify tags on each blog post or a page.</p>
-<pre><code>title: First page in this blog/site/whatever
-layout: post.html
-collection: posts
-tags: blog howto
-</code></pre><p>Second we need to parse all the pages and posts (files) and do two things:</p>
-<ul>
-<li>convert <code>tags</code> to an array, so when we need this on the page we can iterate it</li>
-<li>save <code>&lt;tag name&gt;: [&lt;page&gt;, &lt;page&gt;]</code> mapping into the metadata store</li>
-</ul>
-<pre><code class="language-js">function (files, metalsmith, done) {
-    var tags = {};
-    _.each(files, function (file) {
-        if (!file.tags) { return }
-        file.tags = file.tags.split(&#39; &#39;);
-        file.tags.forEach(function (tag) {
-            if (!tags[tag]) {
-                tags[tag] = [];
-            }
-            tags[tag].push(file);
-        });
-    });
-    metalsmith.metadata().tags = tags;
-    done();
-};
-</code></pre>
-<p>And a Third we need to make use of these two things we&#39;ve added to the data stream:</p>
-<ul>
-<li>display list of tags on the page itself</li>
-</ul>
-<pre><code class="language-twig">    Tags:
-    {% for tag in tags %}
-        &lt;a href=&quot;{{site.baseurl}}/tags#tag-{{tag}}&quot;&gt;{{tag}}&lt;/a&gt;
-    {% endfor %}</code></pre>
-<ul>
-<li><p>make a separate page for tags with own layout:</p>
-<pre><code class="language-twig">&lt;div class=&quot;page&quot;&gt;
-  &lt;h1 class=&quot;page-title&quot;&gt;{{ title }}&lt;/h1&gt;
-  {% for tagName, pages in tags %}
-      &lt;span id=&quot;tag-{{tagName}}&quot;&gt;{{tagName}}&lt;/span&gt;:
-      {% for page in pages %}
-          &lt;a href=&quot;{{ page.path }}&quot;&gt;{{page.title}}&lt;/a&gt;
-      {% endfor %}
-      &lt;br/&gt;
-  {% endfor %}
-&lt;/div&gt;</code></pre>
-</li>
-</ul>
+      var disqus_config = function () {
+        this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
 
-      </div>
-      
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//sasha-github-blog.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
-
-<div class="pagination">
-    
-        <span class="pagination-item newer">Newer</span>
-    
-
-    
-        <span class="pagination-item older">Older</span>
-    
-</div>
-
 
       </div>
     </div>

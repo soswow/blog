@@ -22,11 +22,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/blog/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="/blog/favicon.ico">
+    <!-- generics -->
+    <link rel="icon" href="/blog/favicon-32.png" sizes="32x32">
+    <link rel="icon" href="/blog/favicon-57.png" sizes="57x57">
+    <link rel="icon" href="/blog/favicon-76.png" sizes="76x76">
+    <link rel="icon" href="/blog/favicon-96.png" sizes="96x96">
+    <link rel="icon" href="/blog/favicon-128.png" sizes="128x128">
+    <link rel="icon" href="/blog/favicon-192.png" sizes="192x192">
+    <link rel="icon" href="/blog/favicon-228.png" sizes="228x228">
 
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+    <!-- Android -->
+    <link rel="shortcut icon" sizes="196x196" href=“/blog/favicon-196.png">
+
+    <!-- iOS -->
+    <link rel="apple-touch-icon" href="/blog/favicon-120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="/blog/favicon-152.png" sizes="152x152">
+    <link rel="apple-touch-icon" href="/blog/favicon-180.png" sizes="180x180">
+
+    <!-- Windows 8 IE 10-->
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/blog/favicon-144.png">
 
 
 
@@ -50,9 +65,9 @@
     <a class="sidebar-nav-item" href="/blog/">Home</a>
 
     
-      <a class="sidebar-nav-item" href="/blog/components">Components</a>
+      <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
     
-      <a class="sidebar-nav-item" href="/blog/tags">Tags</a>
+      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
     
 
     <a class="sidebar-nav-item" href="https://github.com/soswow/blog">GitHub project</a>
@@ -131,16 +146,14 @@ tags: blog howto
 </code></pre>
 <p>And a Third we need to make use of these two things we&#39;ve added to the data stream:</p>
 <ul>
-<li><p>display list of tags on the page itself
-</p>
-<pre><code class="language-twig">Tags:
-{% for tag in tags %}
-    &lt;a href=&quot;{{site.baseurl}}/tags#tag-{{tag}}&quot;&gt;{{tag}}&lt;/a&gt;
-{% endfor %}</code></pre>
-<p></p>
-</li>
-<li><p>make a separate page for tags with own layout:
-</p>
+<li>display list of tags on the page itself</li>
+</ul>
+<pre><code class="language-twig">    Tags:
+    {% for tag in tags %}
+        &lt;a href=&quot;{{site.baseurl}}/tags#tag-{{tag}}&quot;&gt;{{tag}}&lt;/a&gt;
+    {% endfor %}</code></pre>
+<ul>
+<li><p>make a separate page for tags with own layout:</p>
 <pre><code class="language-twig">&lt;div class=&quot;page&quot;&gt;
   &lt;h1 class=&quot;page-title&quot;&gt;{{ title }}&lt;/h1&gt;
   {% for tagName, pages in tags %}
@@ -151,7 +164,6 @@ tags: blog howto
       &lt;br/&gt;
   {% endfor %}
 &lt;/div&gt;</code></pre>
-<p></p>
 </li>
 </ul>
 
