@@ -8,18 +8,18 @@ tags: blog lego
 
 Background
 ----------
-Over time we've collected a reasonable collection of lego parts. Initial big boost was given by my oldest brother who gave us his grown up son's collection. When we moved to Australia we left it behind, prepared in a suitcase. A bit later an acquaintance agreed to take it with him on his way to Australia. Pro Tip: if you ask a 2x person to carry 23kg of lego in a second separate suitcase think what you will say on a border, because 100% this will look suspicious. If only someone gave us this tip. Guy was not ready for some extra time on the border 🤣
+Over time we've collected a reasonable collection of lego parts. An initial big boost was given by my oldest brother who gave us his grown up son's collection. When we moved to Australia we left it behind, prepared in a suitcase. A bit later an acquaintance agreed to take it with him on his way to Australia. Pro Tip: if you ask a 2x person to carry 23kg of lego in a second separate suitcase think what you will say on a border because 100% this will look suspicious. If only someone gave us this tip. The guy was not ready for some extra time on the border 🤣
 
-When we settled in Australia we bought [TROFAST](https://www.ikea.com/au/en/cat/toy-storage-20474/) storage solution for toys. Because we had like 9-12 drawers we decided to separate all lego parts by color. Later I found out that this is classic next step for lego owners who reaches particular size.
+When we settled in Australia we bought [TROFAST](https://www.ikea.com/au/en/cat/toy-storage-20474/) storage solution for toys. Because we had like 9-12 drawers we decided to separate all lego parts by color. Later I found out that this is classic next step for lego owners who reaches a particular size.
 
 Also around that time (~5 years ago) one very generous gentlemen at [Robots And Dinosaurs Sydney hacker space](https://robodino.org/) gifted me 8 or 10 of these:
 [![Craft Cabinet]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_1.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_1.jpg)
 
 The problem was all of them were filled with electronics components, that owner didn't need anyway. For 5 years they were not used, taking space moving from place to place with me because I didn't have time nor motivation to clean them up and use this storage for something else.
 
-Until now. I spent couple of weeks packing each drawer content into own bag and moving drawer label on a bag.
+Until now. I spent a couple of weeks packing each drawer content into own bag and moving drawer label on a bag.
 [![De-labeled Craft Cabinet]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_2.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_2.jpg)
-The plan is to use one or two boxes for my own electronics components and other small things in the shop, and rest of them use for sorting lego.
+The plan is to use one or two boxes for my own electronics components and other small things in the shop, and the rest of them use for sorting lego.
 
 LEGO labels source
 ------------------
@@ -27,7 +27,7 @@ Now, when you have some background you come to the topic of this post: lego labe
 
 On his website Tom encourages lego enthusiasts to buy one of Brother's label makers (like [this one](https://www.amazon.com/dp/B00OCEKCB2/ref=as_li_ss_tl?ie=UTF8&linkCode=ll1&tag=thebrickarchitect-20&linkId=debb0ec67aff5b7d7d35224d45e34458)). Because labels he shares with the worlds are in special file format these Label Makers consume. Unfortunately for me, I already bought a label maker ([cheaper and dumber one](https://www.amazon.com.au/gp/product/B076LQ535N/ref=as_li_ss_tl?ie=UTF8&psc=1&linkCode=ll1&tag=soswow-22&linkId=329e5111e440b8b7fef5b058dfde2db6&language=en_AU)) and I didn't want to spend more money on another one.
 
-Instead I decided to buy some [Self Adhesive A4 paper](https://www.amazon.com.au/gp/product/B07KW4XFPT/ref=as_li_ss_tl?ie=UTF8&psc=1&linkCode=ll1&tag=soswow-22&linkId=31b6bb2ef8e76c3a380763d488ce8324&language=en_AU), print those labels on my Inkjet printer and cut them out manually. Unfortunately, I didn't find an easy straight forward way of getting what I wanted.
+Instead, I decided to buy some [Self Adhesive A4 paper](https://www.amazon.com.au/gp/product/B07KW4XFPT/ref=as_li_ss_tl?ie=UTF8&psc=1&linkCode=ll1&tag=soswow-22&linkId=31b6bb2ef8e76c3a380763d488ce8324&language=en_AU), print those labels on my Inkjet printer and cut them out manually. Unfortunately, I didn't find an easy straight forward way of getting what I wanted.
 
 What Tom [provides](https://brickarchitect.com/labels/#download_lego_brick_labels) are two things: 
 * `LEGO_BRICK_LABELS.zip` - which is a list of `.lbx` that you can use with Brother label makers
@@ -35,19 +35,19 @@ What Tom [provides](https://brickarchitect.com/labels/#download_lego_brick_label
 
 [![PDF Page sample]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_4.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_4.png)
 
-Even thought `.pdf` file seems to be no brainer, there are problems with that. It wasn't made with purpose in mind of being printed on self adhesive paper. Amount of white space all around actual labels will consume unnecessarily large amount of waste paper material. The other minor problem is label format. Here is a sample label layout:
+Even though `.pdf` the file seems to be no brainer, there are problems with that. It wasn't made with a purpose in mind of being printed on self-adhesive paper. Amount of white space all around actual labels will consume an unnecessarily large amount of waste paper material. The other minor problem is the label format. Here is a sample label layout:
 [![Default Label Format]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_3.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_3.png)
-It's design assumes one box/tray contains just one type of part with just one label. My case on the other hand is a little bit different. Since I am no [Brick Man](https://en.wikipedia.org/wiki/Ryan_McNaught) and don't have as many parts in my collection, I expect to have more then one type of part in a single tray. There won't be enough place on the front to place many such labels. So, if I could strip off code number and description keeping only the image, that would be good enough.
+Its design assumes one box/tray contains just one type of part with just one label. My case, on the other hand, is a little bit different. Since I am no [Brick Man](https://en.wikipedia.org/wiki/Ryan_McNaught) and don't have as many parts in my collection, I expect to have more than one type of part in a single tray. There won't be enough place on the front to place many such labels. So, if I could strip off code number and description keeping only the image, that would be good enough.
 
 Extracting Lego Part images
 ---------------------------
 
 From Tom's website:
-> The images were created using custom LDraw scripts that optimize the viewing angle and enhance the contrast of each part. The scripts are proprietary and hard to use, and the labels are free for noncommercial use.
+> The images were created using custom LDraw scripts that optimize the viewing angle and enhance the contrast of each part. The scripts are proprietary and hard to use, and the labels are free for non-commercial use.
 
-At this point I am familiar with [LDraw](https://www.ldraw.org/), but since Tom is not sharing any specifics about rendering settings I won't be able to re-render them myself.
+At this point, I am familiar with [LDraw](https://www.ldraw.org/), but since Tom is not sharing any specifics about rendering settings I won't be able to re-render them myself.
 
-Another approach could be editing PDF in vector graphics editor, like Inkscape. Which I tried and quickly decided not to continue this path. It was pretty tedious and I wanted to explore other options.
+Another approach could be editing PDF in a vector graphics editor, like Inkscape. Which I tried and quickly decided not to continue this path. It was pretty tedious and I wanted to explore other options.
 
 [![Default Label Format]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_5.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_5.png)
 
@@ -57,7 +57,7 @@ I decided to look into `.lbx` files. This is a format that can be opened with "B
 
 I was hoping to find some kind of "Export as ..." menu item, but no luck.
 
-Googling more I've discovered that `.lbx` is just a `zip` file. After unzipping I found bunch of `.bmp` files and couple of `.xml` files. Raster images were what Tom rendered with LDraw. That's exactly what I need!
+Googling more I've discovered that `.lbx` is just a `zip` file. After unzipping I found a bunch of `.bmp` files and couple of `.xml` files. Raster images were what Tom rendered with LDraw. That's exactly what I need!
 
 In total there are about 200 `.lbx` files. First I moved them into one place (they were distributed in subfolders). Then, I renamed them to `.zip` with
 ```bash
@@ -66,7 +66,7 @@ for file in *.lbx
         echo mv "$file" "${file/zip./}"
     done
 ```
-`unzip *.zip` will unzip all the files into respective folder. The reason individual folder were needed is because each of archives had images with names like `Object0.bmp`, `Object1.bmp`. Next step was to move all image files into one place. The language I know the best is `JS` so I've written a script that would move images while adding prefix of it's folder:
+`unzip *.zip` will unzip all the files into the respective folder. The reason individual folders were needed is that each of the archives had images with names like `Object0.bmp`, `Object1.bmp`. Next step was to move all image files into one place. The language I know the best is `JS` so I've written a script that would move images while adding prefix of its folder:
 ```typescript
 import * as fs from "fs";
 import * as path from "path";
@@ -91,7 +91,7 @@ walkDir("./source", (localPath: string) => {
 Now, images are extracted
 [![Images are ready]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_7.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_7.png)
 
-Next step is pure magic. Sometime ago, while working on a different project I've discovered tool called [montage](http://www.imagemagick.org/Usage/montage/) which is part of ImageMagick package. It allows you to compile bunch of images into one big image. After quite a bit of tinkering I've came up with this command line:
+Next step is pure magic. Some time ago, while working on a different project I've discovered a tool called [montage](http://www.imagemagick.org/Usage/montage/) which is part of ImageMagick package. It allows you to compile a bunch of images into one big image. After quite a bit of tinkering I've come up with this command line:
 ```bash
 montage *.bmp -tile 20x14 -geometry 120x120+10+10 ../all-together-page-%d.jpg
 ```
