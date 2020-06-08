@@ -38,6 +38,7 @@
     "lodash": "4.x",
     "metalsmith-debug": "1.x",
     "metalsmith-drafts": "1.x",
+    "metalsmith-project-images": "^1.1.2",
     "metalsmith-rename": "^1.0.0",
     "nunjucks-date-filter": "^0.1.1",
     "ts-node": "^8.10.2",

@@ -13,12 +13,12 @@ Over time we've collected a reasonable collection of lego parts. Initial big boo
 When we settled in Australia we bought [TROFAST](https://www.ikea.com/au/en/cat/toy-storage-20474/) storage solution for toys. Because we had like 9-12 drawers we decided to separate all lego parts by color. Later I found out that this is classic next step for lego owners who reaches particular size.
 
 Also around that time (~5 years ago) one very generous gentlemen at [Robots And Dinosaurs Sydney hacker space](https://robodino.org/) gifted me 8 or 10 of these:
-![Craft Cabinet]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_1.jpg)
+[![Craft Cabinet]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_1.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_1.jpg)
 
 The problem was all of them were filled with electronics components, that owner didn't need anyway. For 5 years they were not used, taking space moving from place to place with me because I didn't have time nor motivation to clean them up and use this storage for something else.
 
 Until now. I spent couple of weeks packing each drawer content into own bag and moving drawer label on a bag.
-![De-labeled Craft Cabinet]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_2.jpg)
+[![De-labeled Craft Cabinet]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_2.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_2.jpg)
 The plan is to use one or two boxes for my own electronics components and other small things in the shop, and rest of them use for sorting lego.
 
 LEGO labels source
@@ -33,10 +33,10 @@ What Tom [provides](https://brickarchitect.com/labels/#download_lego_brick_label
 * `LEGO_BRICK_LABELS.zip` - which is a list of `.lbx` that you can use with Brother label makers
 * `LEGO_BRICK_LABELS-CONTACT_SHEET.pdf` - which is a PDF that was crafted manually by Tom with all the labels.
 
-![PDF Page sample]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_4.png)
+[![PDF Page sample]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_4.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_4.png)
 
 Even thought `.pdf` file seems to be no brainer, there are problems with that. It wasn't made with purpose in mind of being printed on self adhesive paper. Amount of white space all around actual labels will consume unnecessarily large amount of waste paper material. The other minor problem is label format. Here is a sample label layout:
-![Default Label Format]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_3.png)
+[![Default Label Format]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_3.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_3.png)
 It's design assumes one box/tray contains just one type of part with just one label. My case on the other hand is a little bit different. Since I am no [Brick Man](https://en.wikipedia.org/wiki/Ryan_McNaught) and don't have as many parts in my collection, I expect to have more then one type of part in a single tray. There won't be enough place on the front to place many such labels. So, if I could strip off code number and description keeping only the image, that would be good enough.
 
 Extracting Lego Part images
@@ -49,11 +49,11 @@ At this point I am familiar with [LDraw](https://www.ldraw.org/), but since Tom 
 
 Another approach could be editing PDF in vector graphics editor, like Inkscape. Which I tried and quickly decided not to continue this path. It was pretty tedious and I wanted to explore other options.
 
-![Default Label Format]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_5.png)
+[![Default Label Format]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_5.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_5.png)
 
 I decided to look into `.lbx` files. This is a format that can be opened with "Brother P-touch Editor". Which looks like very specialized minimal vector graphics editor for preparing labels. It looks like this:
 
-![Brother P-touch Editor]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_6.png)
+[![Brother P-touch Editor]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_6.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_6.png)
 
 I was hoping to find some kind of "Export as ..." menu item, but no luck.
 
@@ -89,7 +89,7 @@ walkDir("./source", (localPath: string) => {
 ```
 
 Now, images are extracted
-![Images are ready]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_7.png)
+[![Images are ready]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_7.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_7.png)
 
 Next step is pure magic. Sometime ago, while working on a different project I've discovered tool called [montage](http://www.imagemagick.org/Usage/montage/) which is part of ImageMagick package. It allows you to compile bunch of images into one big image. After quite a bit of tinkering I've came up with this command line:
 ```bash
@@ -102,10 +102,10 @@ Here is a breakdown:
 * `../all-together-page-%d.jpg` - resulting images name using `%d` is where page number will go
 
 Here is a sample of resulting image:
-![Resulting image sample]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_8.jpg)
+[![Resulting image sample]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_8.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_8.jpg)
 
 Here are resulting images free for download: [1]({{ site["baseurl"] }}/images/all-together-page-0.jpg), [2]({{ site["baseurl"] }}/images/all-together-page-1.jpg), [3]({{ site["baseurl"] }}/images/all-together-page-2.jpg), [4]({{ site["baseurl"] }}/images/all-together-page-3.jpg), [5]({{ site["baseurl"] }}/images/all-together-page-4.jpg). Since these images extracted from Tom's label files I say you can only use these images for noncommercial use because this is what Tom says about label files.
 
 After printing them out and many of days of manual sorting so far I have this:
-![Unused labels]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_9.jpg)
-![Two boxes sorted]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_10.jpg)
+[![Unused labels]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_9.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_9.jpg)
+[![Two boxes sorted]({{ site["baseurl"] }}/images/small/2020-06-07-about-lego-labels_10.jpg)]({{ site["baseurl"] }}/images/2020-06-07-about-lego-labels_10.jpg)

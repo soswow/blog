@@ -12,35 +12,17 @@ import layouts from 'metalsmith-layouts';
 import inPlace from 'metalsmith-in-place';
 import assets from 'metalsmith-assets';
 import rename from 'metalsmith-rename';
+import images from 'metalsmith-project-images';
+import { myConvertPlugin } from './convertPlugin';
+import { tagsPlugin } from './tagsPlugin';
 
-var tagsPlugin = function tagsPlugin (files: any, metalsmith: any, done: any) {
-    var tags: any = {};
-    _.each(files, function (file) {
-        if (!file.tags) {
-            return
-        }
-        file.tags = file.tags.split(' ');
-        file.tags.forEach(function (tag: any) {
-            if (!tags[tag]) {
-                tags[tag] = [];
-            }
-            tags[tag].push(file);
-        });
-    });
-    metalsmith.metadata().tags = tags;
-    done();
-};
-
-console.log('module is loaded');
 export default function(grunt: typeof globalGrunt) {
-    console.log('default func ran');
     grunt.registerTask('generate', function () {
-        var done = this.async();
-        var options = this.options({
+        const done = this.async();
+        const options = this.options({
             root: '.',
             dist: 'build/blog'
         });
-        process.env.DEBUG = 'metalsmith:metadata metalsmith:files metalsmith-layouts';
 
         Metalsmith(options.root)
             .destination(options.dist)
@@ -54,6 +36,13 @@ export default function(grunt: typeof globalGrunt) {
                     tagline: 'Notes to future me'
                 }
             })
+              .use(images({
+                pattern: 'public/images/**'
+              }))
+              .use(myConvertPlugin)
+              // .use(debug({
+              //   log: "first debusg"
+              // }))
               .use(drafts())
               .use(collections({
                   posts: {
@@ -75,7 +64,6 @@ export default function(grunt: typeof globalGrunt) {
                   }
               }))
               .use(tagsPlugin)
-              .use(debug())
               .use(rename([
                 [/\.md$/, ".md.njk"]
               ]))
@@ -87,7 +75,8 @@ export default function(grunt: typeof globalGrunt) {
               ]))
               .use(markdown())
               .use(permalinks({
-                pattern: ':title'
+                pattern: ':title',
+                relative: false // Will not copy /images into each folder
               }))
               .use(rename([
                 [/\.html$/, ".njk"]

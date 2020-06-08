@@ -8,3 +8,4 @@ declare module 'metalsmith-layouts';
 declare module 'metalsmith-in-place';
 declare module 'metalsmith-assets';
 declare module 'metalsmith-rename';
+declare module 'metalsmith-project-images';
