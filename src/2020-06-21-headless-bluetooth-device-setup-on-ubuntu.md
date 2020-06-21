@@ -122,12 +122,18 @@ into `/etc/udev/rules.d/50-nintendo-switch.rules` file and that's it.
 
 Now, with everything in place (Joy-Con is connected, `pyhidapi` installed, `joycon-python` install) you can hopefully do:
 ```python
-from pyjoycon import JoyCon, get_R_id
+from pyjoycon import ButtonEventJoyCon, get_R_id
+import time
 
-joycon_id = get_R_id() # in case u have Right Joy-Con connected ;-)
-joycon = JoyCon(*joycon_id)
+# in case u have Right Joy-Con connected ;-)
+joycon_id = get_R_id()
+joycon = ButtonEventJoyCon(*joycon_id)
 
-joycon.get_status()
+while 1:
+    time.sleep(1/60)
+
+    for event_type, status in joycon.events():
+        print(event_type, status)
 ```
 
 Problem #4 - Remote coding/debugging with VSCode
