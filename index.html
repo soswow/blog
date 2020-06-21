@@ -65,9 +65,9 @@
     <a class="sidebar-nav-item active" href="/blog/">Home</a>
 
     
-      <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
-    
       <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
+    
+      <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
     
 
     <a class="sidebar-nav-item" href="https://github.com/soswow/blog">GitHub project</a>
@@ -95,6 +95,122 @@
       <div class="container content">
         
 <div class="posts">
+      
+      <div class="post">
+          <h1 class="post-title">
+              <a href="/blog/jetson-nano-headless-ubuntu-and-bluetooth-troubles-+-solutions">
+                  Jetson Nano, Headless Ubuntu and Bluetooth troubles + solutions
+              </a>
+          </h1>
+
+          <span class="post-date">21.06.2020</span>
+
+        <p>Here, I will document some of the problems and solutions I&#39;ve experienced over past days working with Jetsn Nano in headless mode trying to pair my Switch Joy-Con.</p>
+<h2 id="problem-1---vnc-on-jetson-nanos-ubuntu-1804">Problem #1 - VNC on Jetson Nano&#39;s Ubuntu 18.04</h2>
+<p>First, I need to set up remote desktop - VNC server. Just in case, pretty much.</p>
+<p><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write">Jetson Nano&#39;s standard image</a> is an Ubuntu 18.04. If you google &quot;vnc jetson nano&quot; you will find <a href="https://raspberry-valley.azurewebsites.net/NVIDIA-Jetson-Nano/#remote-desktop-vnc">same instructions</a> talking about modifying <code>/usr/share/glib-2.0/schemas/org.gnome.Vino.gschema.xml</code> file and running <code>glib-compile-schemas</code> after that. Plus, you will find <a href="https://forums.developer.nvidia.com/t/jetson-nano-vnc-headless-connections/77399/4?u=soswow">how to actually startup VNC server</a> that is already pre-installed with bash script like this:</p>
+<pre><code class="language-bash">#!/bin/bash
+export DISPLAY=:0
+gsettings set org.gnome.Vino enabled true
+gsettings set org.gnome.Vino prompt-enabled false
+gsettings set org.gnome.Vino require-encryption false
+/usr/lib/vino/vino-server &amp;</code></pre>
+<p>It all works fine, except for the extremely small screen (800x600 by default). It was pretty hard to find a solution that was not an instruction to install a different implementation of VNC protocol server (like TightVCN, TigerVNC and other) but something that would make the screen bigger for what I already have.</p>
+<p>The solution was to add this:</p>
+<pre><code>Section &quot;Screen&quot;
+   Identifier    &quot;Default Screen&quot;
+   Monitor        &quot;Configured Monitor&quot;
+   Device        &quot;Default Device&quot;
+   SubSection &quot;Display&quot;
+       Depth    24
+       Virtual 1280 800
+   EndSubSection
+EndSection</code></pre><p>to the end of <code>/etc/X11/xorg.conf</code> and it magically worked giving me big enough virtual screen when connected via VNC client.</p>
+<h2 id="problem-2---pairing-switch-joy-cons-bluetooth-controllers-to-ubuntu">Problem #2 - Pairing Switch Joy-Cons Bluetooth controllers to Ubuntu</h2>
+<p>I want to use my Joy-Cons as controllers for my implementation of <a href="https://www.donkeycar.com/">Donkey Car</a>. For that, I need first to pair them with Jetson Nano. Since Jetson Nano doesn&#39;t have built-in Bluetooth device, I am using a USB dongle.</p>
+<p>To pair Joy-Con with any device you need to put it into pairing mode. There is a small round button in the middle of its side. Press and hold it for a bit until lights start running up and down.</p>
+<p>Now, you can use Ubuntu UI to do the pairing. There is nothing complicated in that. The question is how to do this via the command line (ssh).</p>
+<p>What we will need is <a href="http://www.bluez.org/">BlueZ</a>, which is</p>
+<blockquote>
+<p>the official Linux Bluetooth stack. It provides, in its modular way, support for the core Bluetooth layers and protocols.</p>
+</blockquote>
+<p>You can get it by installing <code>bluez-tools</code> with </p>
+<pre><code class="language-bash">sudo apt install bluez-tools</code></pre>
+<p>Now you should be able to run <code>bluetoothctl</code> command, that will open own command line interface:</p>
+<p><a href="/blog/images/2020-06-21-1.png"><img src="/blog/images/small/2020-06-21-1.jpg" alt="bluetoothctl interface"></a></p>
+<p>It took me a while to find an exact order of commands that you need to execute for everything to work. During all of the following instructions, Joy-Con lights should be running up and down. If they stop, just press and hold SYNC button again.</p>
+<ol>
+<li><code>agent on</code> - can be already on, but just in case.</li>
+<li><code>scan on</code></li>
+<li>Now, wait for your device to show up. For me, it is <code>[NEW] Device B8:78:26:19:C1:8C Joy-Con (R)</code></li>
+<li><code>scan off</code> - now when we know it&#39;s MAC address we don&#39;t need to get spammed with other devices popping up.</li>
+<li><code>trust &lt;YOUR DEVICE MAC&gt;</code></li>
+<li><code>pair &lt;YOUR DEVICE MAC&gt;</code></li>
+<li>It will pair, be connected for a bit and then disconnect.</li>
+<li><code>connect &lt;YOUR DEVICE MAC&gt;</code></li>
+<li>You prompt will change from <code>[bluetooth]#</code> to <code>[&lt;YOUR DEV NAME&gt;]#</code> (<code>[Joy-Con (R)]#</code> in my case)</li>
+</ol>
+<p>Congratulation, now your device is paired and connected. You can go ahead and start talking to it. What took half a day for me is to find out, that <code>trust</code> command should go <strong>BEFORE</strong> <code>pair</code> and <code>connect</code>! Without it I was getting an immediate disconnect right after <code>connect</code>.</p>
+<p>Now, if you want to switch off your Joy-Con you can press SYNC button once. It will take a couple tens of seconds for <code>[CHG] Device B8:78:26:19:C1:8C Connected: no</code> to be printed out and prompt change back to <code>[bluetooth]#</code>.</p>
+<p>To get everything connected again, press any button on Joy-Con and wait for <code>[CHG] Device B8:78:26:19:C1:8C Connected: yes</code>. It&#39;s that easy. Well, almost. In case this doesn&#39;t connect press SYNC button once (not holding) and then press <code>R</code> or <code>SR</code> buttons on Joy-Con.</p>
+<p>While I was pulling my hair out trying to understand how to make my Joy-Cons work properly I&#39;ve labelled them all:</p>
+<p><a href="/blog/images/2020-06-21-2.jpg"><img src="/blog/images/small/2020-06-21-2.jpg" alt="labeled Joy-Cons"></a></p>
+<h2 id="problem-3---python-interface-to-interact-with-joy-cons">Problem #3 - Python interface to interact with Joy-Cons</h2>
+<p>Now, when Joy-Cons are paired and connected how can we communicate with them? Using Python, obviously. I found a <a href="https://github.com/tokoroten-lab/joycon-python">joycon-python library</a> that promises just that.</p>
+<p>The first roadblock was during installation of <code>hidapi</code> python library, that <code>joycon-python</code> depends on. So for now just install <code>pip install joycon-python pyglm</code> and we will deal with <code>hidapi</code> later. </p>
+<p>In <code>joycon-python</code> library instructions author says:</p>
+<blockquote>
+<p>You need cython-hidapi to use Bluetooth / HID connection in Python.</p>
+<p>Alternatively, you can use hid instead if cython-hidapi fails to find your JoyCons.</p>
+</blockquote>
+<p><code>cython-hidapi</code> is what being installed when you do <code>pip install hidapi</code>. The library can be found <a href="https://github.com/trezor/cython-hidapi">here</a>. Mentioned above <code>hid</code> library can be found <a href="https://github.com/apmorton/pyhidapi">here</a>. Both of these Python libraries are just different take on wrapping <code>C</code> library called <code>hidapi</code> that can be found <a href="https://github.com/libusb/hidapi">here</a>. I tried cython-python one first with both build variants (with libusb and without - means with hidraw) and it just didn&#39;t work. The second choice (<code>pyhidapi</code>) did work, however.</p>
+<p>Just following <a href="https://github.com/apmorton/pyhidapi#ubuntudebian">instructions</a> was enough:</p>
+<ol>
+<li><code>sudo apt install libhidapi-hidraw0</code></li>
+<li><code>pip install hid</code></li>
+</ol>
+<p>And here is the bit that took me a while to understand. <a href="https://github.com/trezor/cython-hidapi#udev-rules">Next section in joycon-python instruction</a> about &quot;Udev rules&quot; is crucial! As I found <a href="https://stackoverflow.com/a/62429857">an answer</a> to my own Stackoverflow question, udev rules from <a href="https://www.reddit.com/r/Stadia/comments/egcvpq/using_nintendo_switch_pro_controller_on_linux/fc5s7qm/">this reddit post</a> will make everything work!</p>
+<p>Just chuck this:</p>
+<pre><code># Switch Joy-con (L) (Bluetooth only)
+KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, KERNELS==&quot;0005:057E:2006.*&quot;, MODE=&quot;0666&quot;
+
+# Switch Joy-con (R) (Bluetooth only)
+KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, KERNELS==&quot;0005:057E:2007.*&quot;, MODE=&quot;0666&quot;
+
+# Switch Pro controller (USB and Bluetooth)
+KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, ATTRS{idVendor}==&quot;057e&quot;, ATTRS{idProduct}==&quot;2009&quot;, MODE=&quot;0666&quot;
+KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, KERNELS==&quot;0005:057E:2009.*&quot;, MODE=&quot;0666&quot;
+
+# Switch Joy-con charging grip (USB only)
+KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, ATTRS{idVendor}==&quot;057e&quot;, ATTRS{idProduct}==&quot;200e&quot;, MODE=&quot;0666&quot;</code></pre><p>into <code>/etc/udev/rules.d/50-nintendo-switch.rules</code> file and that&#39;s it.</p>
+<p>Now, with everything in place (Joy-Con is connected, <code>pyhidapi</code> installed, <code>joycon-python</code> install) you can hopefully do:</p>
+<pre><code class="language-python">from pyjoycon import JoyCon, get_R_id
+
+joycon_id = get_R_id() # in case u have Right Joy-Con connected ;-)
+joycon = JoyCon(*joycon_id)
+
+joycon.get_status()</code></pre>
+<h2 id="problem-4---remote-codingdebugging-with-vscode">Problem #4 - Remote coding/debugging with VSCode</h2>
+<p>Even though I have VNC setup it is pretty slow and laggy. To feel like a human and be able to write code on Jetson Nano or Raspberry Pi I need something better.</p>
+<p>The answer is <a href="https://code.visualstudio.com/docs/remote/remote-overview">VS Code Remote Development</a>. It is much more incredible then you can even imagine!</p>
+<p>I am using SSH variant. You can read all the detailed instructions <a href="https://code.visualstudio.com/docs/remote/ssh">over here</a>. But since I am here, I will give a shortcut version.</p>
+<ol>
+<li>Make sure you can <code>ssh</code> into your RPi or Jetson without a password. So if you can do <code>ssh &lt;username&gt;@&lt;ip&gt;</code> and get right into the console without a password prompt, you all good. If not, follow <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md">this instruction</a>.</li>
+<li>Install <code>Remote - SSH</code> VSCode plugin on your host machine.</li>
+<li>Press <sub>&gt;</sub><sup>&lt;</sup> looking symbol on a green background in the left bottom of your VSCode.</li>
+<li>Choose first <code>Remote-SSH: Connect to Host...</code></li>
+<li>Choose <code>+ Add New SSH Host...</code></li>
+<li>Put in <code>ssh &lt;username&gt;@&lt;ip&gt;</code></li>
+<li>Choose where to store this setting</li>
+<li>A new window will open, connect to your device and install all the necessary software on the remote machine automatically.</li>
+<li>All done. Now, you can even install VSCode plugins into the remote machine. Just open plugin page and notice <code>Install on SSH: &lt;ip&gt;</code> button! How cool is that?!</li>
+<li>I&#39;ve installed <code>Python</code> plugin and can even debug my scripts.</li>
+<li>Opening files and folders is also integrated so that you choose them from the remote machine</li>
+<li>This step is specific for my python setup step. Because I am using python&#39;s <code>environment</code> I need to specify my Python Interpreter. For that, I open <code>Show All Commands</code> dropdown (<code>Cmd+Shit+P</code> on MacOS) and type <code>&gt; Python: Select Interpreter</code>. There I can add a new one pointing to my environment (<code>~/env/bin/python</code> in my case, where <code>env</code> is the name of my environment).</li>
+</ol>
+<p>That&#39;s it for today! Have fun!</p>
+
+      </div>
       
       <div class="post">
           <h1 class="post-title">
