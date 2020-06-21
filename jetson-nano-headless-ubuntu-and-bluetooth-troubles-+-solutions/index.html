@@ -176,12 +176,18 @@ KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, KERNELS==&quot;0005:
 # Switch Joy-con charging grip (USB only)
 KERNEL==&quot;hidraw*&quot;, SUBSYSTEM==&quot;hidraw&quot;, ATTRS{idVendor}==&quot;057e&quot;, ATTRS{idProduct}==&quot;200e&quot;, MODE=&quot;0666&quot;</code></pre><p>into <code>/etc/udev/rules.d/50-nintendo-switch.rules</code> file and that&#39;s it.</p>
 <p>Now, with everything in place (Joy-Con is connected, <code>pyhidapi</code> installed, <code>joycon-python</code> install) you can hopefully do:</p>
-<pre><code class="language-python">from pyjoycon import JoyCon, get_R_id
+<pre><code class="language-python">from pyjoycon import ButtonEventJoyCon, get_R_id
+import time
 
-joycon_id = get_R_id() # in case u have Right Joy-Con connected ;-)
-joycon = JoyCon(*joycon_id)
+# in case u have Right Joy-Con connected ;-)
+joycon_id = get_R_id()
+joycon = ButtonEventJoyCon(*joycon_id)
 
-joycon.get_status()</code></pre>
+while 1:
+    time.sleep(1/60)
+
+    for event_type, status in joycon.events():
+        print(event_type, status)</code></pre>
 <h2 id="problem-4---remote-codingdebugging-with-vscode">Problem #4 - Remote coding/debugging with VSCode</h2>
 <p>Even though I have VNC setup it is pretty slow and laggy. To feel like a human and be able to write code on Jetson Nano or Raspberry Pi I need something better.</p>
 <p>The answer is <a href="https://code.visualstudio.com/docs/remote/remote-overview">VS Code Remote Development</a>. It is much more incredible then you can even imagine!</p>
