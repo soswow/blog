@@ -151,6 +151,9 @@ abbr[title] {
 code,
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+code:not(.hljs){
   background-color: #e9ebf3;
   border-radius: 5px;
   padding: 2px 5px;
