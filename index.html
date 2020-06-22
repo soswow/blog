@@ -65,9 +65,9 @@
     <a class="sidebar-nav-item active" href="/blog/">Home</a>
 
     
-      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
-    
       <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
+    
+      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
     
 
     <a class="sidebar-nav-item" href="https://github.com/soswow/blog">GitHub project</a>
@@ -105,106 +105,7 @@
 
           <span class="post-date">21.06.2020</span>
 
-        <!DOCTYPE html>
-<html lang="en-us">
-
-  <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>
-    
-      Jetson Nano, Headless Ubuntu and Bluetooth troubles + solutions &middot; Blog #42
-    
-  </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/blog/css/poole.css">
-  <link rel="stylesheet" href="/blog/css/github-gist.css">
-  <link rel="stylesheet" href="/blog/css/lanyon.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
-
-  <!-- Icons -->
-    <!-- generics -->
-    <link rel="icon" href="/blog/favicon-32.png" sizes="32x32">
-    <link rel="icon" href="/blog/favicon-57.png" sizes="57x57">
-    <link rel="icon" href="/blog/favicon-76.png" sizes="76x76">
-    <link rel="icon" href="/blog/favicon-96.png" sizes="96x96">
-    <link rel="icon" href="/blog/favicon-128.png" sizes="128x128">
-    <link rel="icon" href="/blog/favicon-192.png" sizes="192x192">
-    <link rel="icon" href="/blog/favicon-228.png" sizes="228x228">
-
-    <!-- Android -->
-    <link rel="shortcut icon" sizes="196x196" href=“/blog/favicon-196.png">
-
-    <!-- iOS -->
-    <link rel="apple-touch-icon" href="/blog/favicon-120.png" sizes="120x120">
-    <link rel="apple-touch-icon" href="/blog/favicon-152.png" sizes="152x152">
-    <link rel="apple-touch-icon" href="/blog/favicon-180.png" sizes="180x180">
-
-    <!-- Windows 8 IE 10-->
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="/blog/favicon-144.png">
-
-
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/twig.min.js"></script>
-
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-
-
-  <body>
-    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
-
-<!-- Toggleable sidebar -->
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-item">
-    <p>I am still not sure if this gonna fly or what I end up putting here</p>
-  </div>
-
-  <nav class="sidebar-nav">
-    <a class="sidebar-nav-item" href="/blog/">Home</a>
-
-    
-      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
-    
-      <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
-    
-
-    <a class="sidebar-nav-item" href="https://github.com/soswow/blog">GitHub project</a>
-  </nav>
-
-  <div class="sidebar-item">
-    <p>
-      &copy; 2020. All rights reserved.
-    </p>
-  </div>
-</div>
-
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a href="/blog" title="Home">Blog #42</a>
-            <small>Notes to future me</small>
-          </h3>
-        </div>
-      </div>
-
-      <div class="container content">
-        
-<div class="post">
-    <h1 class="post-title">Jetson Nano, Headless Ubuntu and Bluetooth troubles + solutions</h1>
-    <span class="post-date">21.06.2020 | <a href="#disqus_thread">Link</a></span>
-    <p>Here, I will document some of the problems and solutions I&#39;ve experienced over past days working with Jetsn Nano in headless mode trying to pair my Switch Joy-Con.</p>
+        <p>Here, I will document some of the problems and solutions I&#39;ve experienced over past days working with Jetsn Nano in headless mode trying to pair my Switch Joy-Con.</p>
 <h2 id="problem-1---vnc-on-jetson-nanos-ubuntu-1804">Problem #1 - VNC on Jetson Nano&#39;s Ubuntu 18.04</h2>
 <p>First, I need to set up remote desktop - VNC server. Just in case, pretty much.</p>
 <p><a href="https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write">Jetson Nano&#39;s standard image</a> is an Ubuntu 18.04. If you google &quot;vnc jetson nano&quot; you will find <a href="https://raspberry-valley.azurewebsites.net/NVIDIA-Jetson-Nano/#remote-desktop-vnc">same instructions</a> talking about modifying <code>/usr/share/glib-2.0/schemas/org.gnome.Vino.gschema.xml</code> file and running <code>glib-compile-schemas</code> after that. Plus, you will find <a href="https://forums.developer.nvidia.com/t/jetson-nano-vnc-headless-connections/77399/4?u=soswow">how to actually startup VNC server</a> that is already pre-installed with bash script like this:</p>
@@ -315,78 +216,6 @@ while 1:
 </ol>
 <p>That&#39;s it for today! Have fun!</p>
 
-
-    Tags:
-    
-        <a href="/blog/tags#tag-blog">blog</a>
-    
-        <a href="/blog/tags#tag-ubuntu">ubuntu</a>
-    
-        <a href="/blog/tags#tag-Bluetooth">Bluetooth</a>
-    
-        <a href="/blog/tags#tag-&quot;jetson">&quot;jetson</a>
-    
-        <a href="/blog/tags#tag-nano&quot;">nano&quot;</a>
-    
-    <div id="disqus_thread"></div>
-    <script>
-      /**
-       * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-       * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-       */
-
-      var disqus_config = function () {
-        this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-
-      (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-
-        s.src = '//sasha-github-blog.disqus.com/embed.js';
-
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</div>
-
-      </div>
-    </div>
-
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
-
-        document.addEventListener('click', function(e) {
-          var target = e.target;
-
-          if(!checkbox.checked ||
-             sidebar.contains(target) ||
-             (target === checkbox || target === toggle)) return;
-
-          checkbox.checked = false;
-        }, false);
-      })(document);
-    </script>
-    <script src="//localhost:35729/livereload.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2354819-12"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-2354819-12');
-    </script>
-    <script id="dsq-count-scr" src="//sasha-github-blog.disqus.com/count.js" async></script>
-  </body>
-</html>
-
       </div>
       
       <div class="post">
@@ -465,9 +294,9 @@ while 1:
     <a class="sidebar-nav-item" href="/blog/">Home</a>
 
     
-      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
-    
       <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
+    
+      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
     
 
     <a class="sidebar-nav-item" href="https://github.com/soswow/blog">GitHub project</a>
@@ -651,106 +480,7 @@ walkDir(&quot;./source&quot;, (localPath: string) =&gt; {
 
           <span class="post-date">23.01.2016</span>
 
-        <!DOCTYPE html>
-<html lang="en-us">
-
-  <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>
-    
-      About what this blog is made of &middot; Blog #42
-    
-  </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/blog/css/poole.css">
-  <link rel="stylesheet" href="/blog/css/github-gist.css">
-  <link rel="stylesheet" href="/blog/css/lanyon.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
-
-  <!-- Icons -->
-    <!-- generics -->
-    <link rel="icon" href="/blog/favicon-32.png" sizes="32x32">
-    <link rel="icon" href="/blog/favicon-57.png" sizes="57x57">
-    <link rel="icon" href="/blog/favicon-76.png" sizes="76x76">
-    <link rel="icon" href="/blog/favicon-96.png" sizes="96x96">
-    <link rel="icon" href="/blog/favicon-128.png" sizes="128x128">
-    <link rel="icon" href="/blog/favicon-192.png" sizes="192x192">
-    <link rel="icon" href="/blog/favicon-228.png" sizes="228x228">
-
-    <!-- Android -->
-    <link rel="shortcut icon" sizes="196x196" href=“/blog/favicon-196.png">
-
-    <!-- iOS -->
-    <link rel="apple-touch-icon" href="/blog/favicon-120.png" sizes="120x120">
-    <link rel="apple-touch-icon" href="/blog/favicon-152.png" sizes="152x152">
-    <link rel="apple-touch-icon" href="/blog/favicon-180.png" sizes="180x180">
-
-    <!-- Windows 8 IE 10-->
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="/blog/favicon-144.png">
-
-
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/languages/twig.min.js"></script>
-
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-
-
-  <body>
-    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
-
-<!-- Toggleable sidebar -->
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-item">
-    <p>I am still not sure if this gonna fly or what I end up putting here</p>
-  </div>
-
-  <nav class="sidebar-nav">
-    <a class="sidebar-nav-item" href="/blog/">Home</a>
-
-    
-      <a class="sidebar-nav-item" href="/blog/components.md">Components</a>
-    
-      <a class="sidebar-nav-item" href="/blog/tags.md">Tags</a>
-    
-
-    <a class="sidebar-nav-item" href="https://github.com/soswow/blog">GitHub project</a>
-  </nav>
-
-  <div class="sidebar-item">
-    <p>
-      &copy; 2020. All rights reserved.
-    </p>
-  </div>
-</div>
-
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a href="/blog" title="Home">Blog #42</a>
-            <small>Notes to future me</small>
-          </h3>
-        </div>
-      </div>
-
-      <div class="container content">
-        
-<div class="post">
-    <h1 class="post-title">About what this blog is made of</h1>
-    <span class="post-date">23.01.2016 | <a href="#disqus_thread">Link</a></span>
-    <h2 id="stack">Stack</h2>
+        <h2 id="stack">Stack</h2>
 <p>This website is statically generated with <a href="https://metalsmith.io/">Metalsmith</a> framework, which is written in JavaScript. This is imposrtant, since I don&#39;t know much Ruby and know much JS. It works with very simple idea:</p>
 <blockquote>
 <p>All of the logic in Metalsmith is handled by plugins. You simply chain them together.</p>
@@ -819,70 +549,6 @@ tags: blog howto
 &lt;/div&gt;</code></pre>
 </li>
 </ul>
-
-
-    Tags:
-    
-        <a href="/blog/tags#tag-blog">blog</a>
-    
-    <div id="disqus_thread"></div>
-    <script>
-      /**
-       * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-       * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-       */
-
-      var disqus_config = function () {
-        this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-
-      (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-
-        s.src = '//sasha-github-blog.disqus.com/embed.js';
-
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</div>
-
-      </div>
-    </div>
-
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
-
-        document.addEventListener('click', function(e) {
-          var target = e.target;
-
-          if(!checkbox.checked ||
-             sidebar.contains(target) ||
-             (target === checkbox || target === toggle)) return;
-
-          checkbox.checked = false;
-        }, false);
-      })(document);
-    </script>
-    <script src="//localhost:35729/livereload.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2354819-12"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-2354819-12');
-    </script>
-    <script id="dsq-count-scr" src="//sasha-github-blog.disqus.com/count.js" async></script>
-  </body>
-</html>
 
       </div>
       
