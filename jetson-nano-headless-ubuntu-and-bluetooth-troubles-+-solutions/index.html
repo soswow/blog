@@ -147,6 +147,12 @@ EndSection</code></pre><p>to the end of <code>/etc/X11/xorg.conf</code> and it m
 <p>To get everything connected again, press any button on Joy-Con and wait for <code>[CHG] Device B8:78:26:19:C1:8C Connected: yes</code>. It&#39;s that easy. Well, almost. In case this doesn&#39;t connect press SYNC button once (not holding) and then press <code>R</code> or <code>SR</code> buttons on Joy-Con.</p>
 <p>While I was pulling my hair out trying to understand how to make my Joy-Cons work properly I&#39;ve labelled them all:</p>
 <p><a href="/blog/images/2020-06-21-2.jpg"><img src="/blog/images/small/2020-06-21-2.jpg" alt="labeled Joy-Cons"></a></p>
+<p><strong>Update:</strong> If after all this ^ you re-pair Joy-Con with Switch concole, you will need to do this:</p>
+<ol>
+<li><code>remove &lt;YOUR DEVICE MAC&gt;</code></li>
+<li><code>untrust &lt;YOUR DEVICE MAC&gt;</code></li>
+<li>Go back to prev. instruction to add it back again.</li>
+</ol>
 <h2 id="problem-3---python-interface-to-interact-with-joy-cons">Problem #3 - Python interface to interact with Joy-Cons</h2>
 <p>Now, when Joy-Cons are paired and connected how can we communicate with them? Using Python, obviously. I found a <a href="https://github.com/tokoroten-lab/joycon-python">joycon-python library</a> that promises just that.</p>
 <p>The first roadblock was during installation of <code>hidapi</code> python library, that <code>joycon-python</code> depends on. So for now just install <code>pip install joycon-python pyglm</code> and we will deal with <code>hidapi</code> later. </p>
