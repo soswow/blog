@@ -83,6 +83,12 @@ While I was pulling my hair out trying to understand how to make my Joy-Cons wor
 
 [![labeled Joy-Cons]({{ site["baseurl"] }}/images/small/2020-06-21-2.jpg)]({{ site["baseurl"] }}/images/2020-06-21-2.jpg)
 
+**Update:** If after all this ^ you re-pair Joy-Con with Switch concole, you will need to do this:
+
+1. `remove <YOUR DEVICE MAC>`
+2. `untrust <YOUR DEVICE MAC>`
+3. Go back to prev. instruction to add it back again.
+
 Problem #3 - Python interface to interact with Joy-Cons
 -------------------------------------------------------
 
